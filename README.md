@@ -4,8 +4,9 @@ A template repo with most common python tooling setup (uv, pre-commit, ruff, pyt
 
 ## Setup
 
-[ ] Manually Install `brew` -- https://brew.sh/
-[ ] Run `setup/setup.sh` for one time setup. The script is idempotent, so it's okay to re-run if the setup changes.
+- [ ] Manual install `brew` -- <https://brew.sh/>
+
+- [ ] Run `setup/setup.sh` for one time setup. The script is idempotent, so it's okay to re-run if the setup changes.
 
 ## Keep up to date
 
