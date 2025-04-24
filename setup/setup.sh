@@ -23,7 +23,13 @@
   brew install uv
   brew install direnv
 
+  # If uv.lock exists, sync with locked dependencies; otherwise, sync all packages
+  if [ ! -f "../uv.lock" ]; then
+    uv sync --all-packages
+  else
+    uv sync --locked --all-packages
+  fi
+
   # Set up pre-commit hooks
-  uv sync --locked --all-packages
   uv run pre-commit install
 }
