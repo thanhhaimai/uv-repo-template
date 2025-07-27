@@ -4,12 +4,17 @@ A template repo with most common python tooling setup (uv, pre-commit, ruff, pyt
 
 ## Setup
 
-- [ ] Manual install `brew` -- <https://brew.sh/>
+### Prerequisites
 
-- [ ] Run `setup/setup.sh` for one time setup. The script is idempotent, so it's okay to re-run if the setup changes.
+- Install Homebrew first: <https://brew.sh/>
 
-## Keep up to date
+### Initial Setup
 
-Ruff
+Run `setup/setup.sh` for one-time setup. The script is designed to be idempotent - you can safely re-run it multiple times without issues.
 
-- Check and update `rev` field in `.pre-commit-config.yaml` to the desired version
+#### What `setup.sh` does:
+
+- **Installs required tools**: Uses Homebrew to install `uv` (Python package manager) and `direnv` (environment management)
+- **Sets up dependencies**: Syncs project dependencies using `uv sync` (creates lock file if none exists)
+- **Configures pre-commit**: Installs pre-commit hooks for code quality checks
+- **Environment setup**: Ensures your development environment is ready for the project
