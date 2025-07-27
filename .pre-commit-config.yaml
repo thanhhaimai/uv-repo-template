@@ -9,7 +9,7 @@ default_install_hook_types:
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.11.6
+    rev: v0.12.5
     hooks:
       # Hook: Run lint with fix
       - id: ruff
