@@ -35,27 +35,22 @@
 
   # Upgrade Python
   print_section "Upgrading Python"
-  echo "Upgrading Python to latest version..."
   uv python upgrade
 
   # Upgrade all dependencies
   print_section "Upgrading Dependencies"
-  echo "Upgrading all dependencies to latest compatible versions..."
   uv lock --upgrade
 
   # Upgrade all tools
   print_section "Upgrading Tools"
-  echo "Upgrading all tools to latest versions..."
   uv tool upgrade --all
 
   # Sync the environment with updated dependencies
   print_section "Syncing Environment"
-  echo "Syncing virtual environment with updated dependencies..."
   uv sync --all-packages
 
   # Run tests to ensure everything still works
   print_section "Running Tests"
-  echo "Running tests to verify compatibility..."
   if uv run pytest; then
     echo "All tests passed"
   else

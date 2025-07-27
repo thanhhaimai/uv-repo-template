@@ -17,13 +17,13 @@
   # Check required commands
   check_required_commands "brew"
 
-  print_section "Setting up repo for development"
-
   # Update brew and install required tools
+  print_section "Setting up repo for development"
   brew update
   brew install uv direnv
 
   # If uv.lock exists, sync with locked dependencies; otherwise, sync all packages
+  print_section "Syncing dependencies"
   if [ ! -f "../uv.lock" ]; then
     uv sync --all-packages
   else
@@ -31,6 +31,9 @@
   fi
 
   # Set up pre-commit hooks
+  print_section "Setting up pre-commit hooks"
   uv run pre-commit install
+
+  echo "Setup complete!"
 
 }
