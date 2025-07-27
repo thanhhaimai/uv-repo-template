@@ -45,6 +45,10 @@
   print_section "Upgrading Tools"
   uv tool upgrade --all
 
+  # Update pre-commit hooks
+  print_section "Updating Pre-commit Hooks"
+  uv run pre-commit autoupdate
+
   # Sync the environment with updated dependencies
   print_section "Syncing Environment"
   uv sync --all-packages

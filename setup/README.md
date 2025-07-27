@@ -40,6 +40,7 @@ Comprehensive upgrade script that upgrades Python, dependencies, tools, and runs
 - **Python**: Latest Python version via `uv python upgrade`
 - **Dependencies**: All project dependencies via `uv lock --upgrade`
 - **Tools**: All development tools via `uv tool upgrade --all`
+- **Pre-commit hooks**: Updates pre-commit hooks to their latest versions via `pre-commit autoupdate`
 - **Environment**: Virtual environment synchronization
 
 ### Prerequisites
