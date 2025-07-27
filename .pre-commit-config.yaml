@@ -29,6 +29,16 @@ repos:
 
   - repo: local
     hooks:
+      # Hook: Run ty type checker on changed files before commit
+      - id: ty-check
+        name: ty-check
+        description: "Run ty type checker on changed Python files"
+        entry: uvx ty check
+        types_or: [python, pyi]
+        language: system
+        pass_filenames: true
+        stages: [pre-commit]
+
       # Hook: run `pytest` on changed files before commit
       - id: pytest-only-changed
         name: pytest-only-changed
