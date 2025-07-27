@@ -18,3 +18,17 @@ Run `setup/setup.sh` for one-time setup. The script is designed to be idempotent
 - **Sets up dependencies**: Syncs project dependencies using `uv sync` (creates lock file if none exists)
 - **Configures pre-commit**: Installs pre-commit hooks for code quality checks
 - **Environment setup**: Ensures your development environment is ready for the project
+
+## Usage
+
+To create a new library:
+
+```bash
+uv init --lib example-lib
+```
+
+To create a new app:
+
+```bash
+uv init --app example-app
+```

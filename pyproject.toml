@@ -17,3 +17,9 @@ dev = [
     "pytest-watcher>=0.4.3",
     "ty>=0.0.1a16",
 ]
+
+[tool.uv.workspace]
+members = [
+    "example-lib",
+    "example-app",
+]

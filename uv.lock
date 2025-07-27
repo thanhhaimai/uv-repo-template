@@ -2,6 +2,13 @@ version = 1
 revision = 2
 requires-python = ">=3.13"
 
+[manifest]
+members = [
+    "example-app",
+    "example-lib",
+    "uv-repo-template",
+]
+
 [[package]]
 name = "appnope"
 version = "0.1.4"
@@ -152,6 +159,16 @@ sdist = { url = "https://files.pythonhosted.org/packages/96/8e/709914eb2b5749865
 wheels = [
     { url = "https://files.pythonhosted.org/packages/33/6b/e0547afaf41bf2c42e52430072fa5658766e3d65bd4b03a563d1b6336f57/distlib-0.4.0-py2.py3-none-any.whl", hash = "sha256:9659f7d87e46584a30b5780e43ac7a2143098441670ff0a49d5f9034c54a6c16", size = 469047, upload-time = "2025-07-17T16:51:58.613Z" },
 ]
+
+[[package]]
+name = "example-app"
+version = "0.1.0"
+source = { editable = "example-app" }
+
+[[package]]
+name = "example-lib"
+version = "0.1.0"
+source = { editable = "example-lib" }
 
 [[package]]
 name = "executing"
