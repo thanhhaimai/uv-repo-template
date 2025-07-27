@@ -20,6 +20,13 @@ repos:
       - id: ruff-format
         types_or: [python, pyi]
 
+  - repo: https://github.com/hukkin/mdformat
+    rev: 0.7.22
+    hooks:
+      # Hook: Format markdown files
+      - id: mdformat
+        types_or: [markdown]
+
   - repo: local
     hooks:
       # Hook: run `pytest` on changed files before commit
