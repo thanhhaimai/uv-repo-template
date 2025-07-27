@@ -33,7 +33,7 @@ repos:
       - id: ty-check
         name: ty-check
         description: "Run ty type checker on changed Python files"
-        entry: uvx ty check
+        entry: uv run ty check
         types_or: [python, pyi]
         language: system
         pass_filenames: true
