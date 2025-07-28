@@ -4,6 +4,9 @@ A monorepo Python projects template with modern tooling setup including `uv`
 (fast Python package manager), `pre-commit` hooks, `ruff` (linter),
 `ty` (type checking), `pytest` (testing), and more.
 
+NOTE: This repo is opinionated and is useful as a reference.
+I encourage the readers to learn more about each tools and set up their own repo suitable for their workflow.
+
 ## Features
 
 - **Modern Python Tooling**: Uses `uv` for fast dependency management and builds
