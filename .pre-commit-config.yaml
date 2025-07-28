@@ -26,6 +26,9 @@ repos:
       # Hook: Format markdown files
       - id: mdformat
         types_or: [markdown]
+        # Optionally add plugins
+        additional_dependencies:
+          - mdformat-gfm
 
   - repo: local
     hooks:
