@@ -62,6 +62,12 @@ This script will:
 - Set up project dependencies and create lock file
 - Configure pre-commit hooks
 
+Allows direnv for workspace root when prompted:
+
+```bash
+direnv allow
+```
+
 ### 2. Verify Installation
 
 Check that everything is working:
@@ -98,10 +104,22 @@ uv run pre-commit run --all-files
 
 ### Package Management
 
-- **Add dependency**: `uv add package-name`
-- **Add dev dependency**: `uv add --dev package-name`
-- **Remove dependency**: `uv remove package-name`
-- **Update dependencies**: `./setup/upgrade.sh`
+Dependencies are managed by `uv`.
+See `pyproject.toml` for details.
+
+```bash
+# Add a prod package
+uv add package-name
+
+# Add a dev package
+uv add --dev package-name
+
+# Remove a package
+uv remove package-name
+
+# Upgrade package / python / tools / pre-commit verions
+./setup/upgrade.sh
+```
 
 ### Testing
 
