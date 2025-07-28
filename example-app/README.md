@@ -4,7 +4,8 @@ This is an example application package demonstrating how to structure a Python a
 
 ## Overview
 
-This package serves as a template for creating Python applications. It demonstrates:
+This package serves as a template for creating Python applications.
+It demonstrates:
 
 - Proper package structure with `src/` layout
 - Type safety with `py.typed` files
@@ -27,7 +28,8 @@ example-app/
 
 ## Naming Conventions
 
-**Important**: The workspace member name (`example-app`) and Python package name (`example_app`) follow different conventions:
+**Important**: The workspace member name (`example-app`)
+and Python package name (`example_app`) follow different conventions:
 
 - **Workspace member name**: Uses hyphens (`example-app`)
 - **Python package name**: Uses underscores (`example_app`)
@@ -38,12 +40,15 @@ This is a standard convention in Python projects.
 
 ### Required Files
 
-- **`__init__.py`**: Marks the directory as a Python package. Usually empty for simple packages.
-- **`py.typed`**: Empty file that indicates the package supports type checking. Required for type safety.
+- **`__init__.py`**: Marks the directory as a Python package.
+  Typically empty for simple packages.
+- **`py.typed`**: Empty file that indicates the package supports type checking.
+  Required for type safety.
 
 ### Source Code
 
-Place all your application code inside the `src/example_app/` directory. This structure provides:
+Place all your application code inside the `src/example_app/` directory.
+This structure provides:
 
 - Clear separation between source and other files
 - Proper package isolation
@@ -53,13 +58,16 @@ Place all your application code inside the `src/example_app/` directory. This st
 
 ### Importing Dependencies
 
-To import from other packages in the workspace, use the Python package name (without `src/`):
+To import from other packages in the workspace,
+use the Python package name (without `src/`):
 
 ```python
 # Import from example-lib package
 from example_lib.some_library import some_function
 from example_lib.another_library import another_function
 ```
+
+Prefer absolute imports for clarity.
 
 ### Testing
 
@@ -77,48 +85,6 @@ src/example_app/
 └── main_library_test.py
 ```
 
-### Running Tests
-
-```bash
-# Run all tests in this package
-uv run pytest
-
-# Run tests with coverage
-uv run pytest --cov=example_app
-
-# Run specific test file
-uv run pytest src/example_app/main_library_test.py
-```
-
-## Building and Distribution
-
-This package uses `uv_build` as the build backend, configured in `pyproject.toml`:
-
-```toml
-[build-system]
-requires = ["uv_build>=0.8.3,<0.9.0"]
-build-backend = "uv_build"
-```
-
-### Building the Package
-
-```bash
-# Build the package
-uv build
-
-# Build and install in development mode
-uv pip install -e .
-```
-
-## Configuration
-
-The package configuration is defined in `pyproject.toml`:
-
-- **Name**: `example-app`
-- **Version**: `0.1.0`
-- **Python requirement**: `>=3.13`
-- **Dependencies**: Currently empty, add as needed
-
 ### Adding Dependencies
 
 ```bash
@@ -129,24 +95,8 @@ uv add requests
 uv add --dev pytest-mock
 ```
 
-## Best Practices
-
-1. **Type Safety**: Always include `py.typed` files for type checking support
-1. **Testing**: Write tests for all new functionality
-1. **Imports**: Use absolute imports from the package root
-1. **Documentation**: Document public APIs and complex functions
-1. **Code Quality**: Use the pre-configured ruff linter and formatter
-
-## Next Steps
-
-1. Replace the example code with your actual application logic
-1. Update the package name and description in `pyproject.toml`
-1. Add your specific dependencies
-1. Write tests for your functionality
-1. Update this README with your application-specific information
-
 ## Related Documentation
 
 - [Main project README](../README.md) - Overview of the entire workspace
 - [Setup documentation](../setup/README.md) - Development environment setup
-- [Example library](../example-lib/README.md) - Library package example
+- [Example application](../example-lib/README.md) - Library package example

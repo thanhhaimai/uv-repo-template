@@ -1,13 +1,13 @@
 # uv-repo-template
 
 A monorepo Python projects template with modern tooling setup including `uv`
-(fast Python package manager), `pre-commit` hooks, `ruff` (linter), `pytest`
-(testing), and more.
+(fast Python package manager), `pre-commit` hooks, `ruff` (linter),
+`ty` (type checking), `pytest` (testing), and more.
 
 ## Features
 
 - **Modern Python Tooling**: Uses `uv` for fast dependency management and builds
-- **Testing**: `pytest` setup with coverage reporting
+- **Testing**: `pytest` setup with coverage reporting, watch, and cache
 - **Pre-commit Hooks**: Automated code quality checks on commit. Pre-configured
   with `ruff` and `mdformat` for linting and formatting
 - **Type Safety**: Type checking support with `ty`

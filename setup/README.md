@@ -1,6 +1,7 @@
 # Setup Scripts
 
-This directory contains setup and maintenance scripts for the uv-repo-template project. These scripts automate the development environment setup and maintenance tasks.
+This directory contains setup and maintenance scripts for the uv-repo-template project.
+These scripts automate the development environment setup and maintenance tasks.
 
 ## Scripts Overview
 
