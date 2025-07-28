@@ -1,34 +1,182 @@
 # uv-repo-template
 
-A template repo with most common python tooling setup (uv, pre-commit, ruff, pytest,...)
+A monorepo Python projects template with modern tooling setup including `uv`
+(fast Python package manager), `pre-commit` hooks, `ruff` (linter), `pytest`
+(testing), and more.
 
-## Setup
+## Features
 
-### Prerequisites
+- **Modern Python Tooling**: Uses `uv` for fast dependency management and builds
+- **Testing**: `pytest` setup with coverage reporting
+- **Pre-commit Hooks**: Automated code quality checks on commit. Pre-configured
+  with `ruff` and `mdformat` for linting and formatting
+- **Type Safety**: Type checking support with `ty`
+- **Workspace Structure**: Monorepo workspace with example library and
+  application
+- **Development Environment**: Automated setup and upgrade scripts
 
-- Install Homebrew first: <https://brew.sh/>
+## Project Structure
 
-### Initial Setup
+```
+uv-repo-template/
+├── example-app/          # Example application package
+│   ├── src/example_app/
+│   └── pyproject.toml
+├── example-lib/          # Example library package
+│   ├── src/example_lib/
+│   └── pyproject.toml
+├── setup/               # Setup and maintenance scripts
+├── pyproject.toml       # Root workspace configuration
+└── README.md
+```
 
-Run `setup/setup.sh` for one-time setup. The script is designed to be idempotent - you can safely re-run it multiple times without issues.
+## Prerequisites
 
-#### What `setup.sh` does:
+- **macOS or Linux** with Homebrew support
+- **Homebrew** installed ([install here](https://brew.sh/))
 
-- **Installs required tools**: Uses Homebrew to install `uv` (Python package manager) and `direnv` (environment management)
-- **Sets up dependencies**: Syncs project dependencies using `uv sync` (creates lock file if none exists)
-- **Configures pre-commit**: Installs pre-commit hooks for code quality checks
-- **Environment setup**: Ensures your development environment is ready for the project
+NOTE: If you haven't used `brew` on Linux, consider giving it a try. It's nice
+to have a simple way to install dependencies supporting both Linux / Mac.
+
+## Quick Start
+
+### 1. Use the template
+
+Click the "Use this template" button (top right, next to the star button) at:
+https://github.com/thanhhaimai/uv-repo-template
+
+### 1. Initial Setup
+
+Run the setup script to configure your development environment:
+
+```bash
+./setup/setup.sh
+```
+
+This script will:
+
+- Install `uv` (Python package manager) and `direnv` (environment management)
+- Set up project dependencies and create lock file
+- Configure pre-commit hooks
+
+### 2. Verify Installation
+
+Check that everything is working:
+
+```bash
+# Run tests
+uv run pytest
+
+# Run all pre-commit checks
+uv run pre-commit run --all-files
+```
 
 ## Usage
 
-To create a new library:
+### Creating New Packages
+
+#### Create a new library:
 
 ```bash
-uv init --lib example-lib
+uv init --lib my-library
 ```
 
-To create a new app:
+#### Create a new application:
 
 ```bash
-uv init --app example-app
+uv init --app my-application
 ```
+
+### Development Workflow
+
+1. **Install dependencies**: `uv sync`
+1. **Run tests**: `uv run pytest`
+1. **Lint code**: `uv run pre-commit`
+
+### Package Management
+
+- **Add dependency**: `uv add package-name`
+- **Add dev dependency**: `uv add --dev package-name`
+- **Remove dependency**: `uv remove package-name`
+- **Update dependencies**: `./setup/upgrade.sh`
+
+### Testing
+
+Tests are organized with the following conventions:
+
+- Test files end with `_test.py`
+- Tests are placed in the same directory as source code
+- Use `pytest` for running tests
+
+```bash
+# Run all tests
+uv run pytest
+
+# Run tests with coverage
+uv run pytest --cov
+
+# Run tests in watch mode
+uv run ptw --testmon --now .
+```
+
+### Environment Management
+
+The project uses `direnv` for automatic environment activation. When you enter the project directory, the Python environment will be automatically activated.
+
+## Maintenance
+
+### Regular Updates
+
+Keep your environment up to date with the upgrade script:
+
+```bash
+./setup/upgrade.sh
+```
+
+This will:
+
+- Upgrade Python to the latest version
+- Update all dependencies
+- Upgrade development tools
+- Update pre-commit hooks
+- Run the full test suite
+
+### Troubleshooting
+
+#### Common Issues
+
+1. **"brew command not found"**: Install Homebrew first
+1. **"uv command not found"**: Run `./setup/setup.sh` again
+1. **Lock file conflicts**: Regenerate with `uv lock --upgrade`
+
+For more detailed troubleshooting, see [setup/README.md](setup/README.md).
+
+#### Tests fail after upgrade
+
+This indicates a compatibility issue. Consider:
+
+1. **Rollback**: Restore the previous `uv.lock` file
+1. **Incremental upgrade**: Upgrade packages one by one to identify the problematic package
+1. **Check changelog**: Review the package's changelog for breaking changes
+1. **Review test output**: Check specific failure details in test output
+1. **Update tests**: Your tests may need updates for new package versions
+
+#### Tool upgrade fails
+
+**Solution**: Some tools may require manual intervention
+
+1. Check tool-specific documentation for upgrade requirements
+1. Consider upgrading tools individually if needed
+1. Verify tool compatibility with your Python version
+1. Check for tool-specific configuration requirements
+
+## Contributing
+
+1. Fork the repository
+1. Create a feature branch
+1. Make your changes
+1. Submit a pull request
+
+## License
+
+MIT License

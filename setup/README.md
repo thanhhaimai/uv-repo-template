@@ -1,17 +1,18 @@
 # Setup Scripts
 
-This directory contains setup and maintenance scripts for the repository.
+This directory contains setup and maintenance scripts for the uv-repo-template project. These scripts automate the development environment setup and maintenance tasks.
 
 ## Scripts Overview
 
 - **`setup.sh`**: Initial development environment setup
 - **`upgrade.sh`**: Comprehensive environment upgrade and maintenance
+- **`setup-utils.sh`**: Utility library used by other scripts
 
 ## `setup.sh` - Initial Setup
 
 The initial setup script that prepares your development environment for the first time.
 
-The script is designed to be idempotent - you can safely re-run it multiple times without issues.
+The script is designed to be **idempotent** - you can safely re-run it multiple times without issues.
 
 ### What it does
 
@@ -22,8 +23,9 @@ The script is designed to be idempotent - you can safely re-run it multiple time
 
 ### Prerequisites
 
-- Homebrew installed (`brew` command available)
-- macOS or Linux with Homebrew support
+- **macOS or Linux** with Homebrew support
+- **Homebrew** installed (`brew` command available)
+  - Install from: <https://brew.sh/>
 
 ### Usage
 
@@ -57,17 +59,24 @@ Comprehensive upgrade script that upgrades Python, dependencies, tools, and runs
 
 ## Best Practices
 
-### For Initial Setup
+### For scripts
 
-1. **Run setup first**: Always run `setup.sh` before any other operations
-1. **Verify installation**: Check that `uv` and `direnv` are available after setup
+- Have `{ }` to guard against editing while executing.
+- Set `set -eEuo pipefail`. See the current script for comments.
+- Source `setup-utils.sh`
+- Check for any required command at the start of the script.
+- Work for both Mac / Ubuntu.
 
-### For Upgrades
+See `setup.sh` for example
 
-1. **Regular upgrades**: Run the upgrade script periodically to keep your environment current
-1. **Review changes**: Always review the `uv.lock` changes before committing
-1. **Test thoroughly**: The comprehensive script runs your full test suite automatically
-1. **Incremental approach**: If issues arise, consider upgrading packages one by one
+### For Shell libraries
+
+- Has no execution permission
+- Has `# shellcheck shell=bash` at the start
+- Set `set -eEuo pipefail`. See the current script for comments.
+- Prefer `local` variable
+
+See `setup-utils.sh` for example
 
 ## Troubleshooting
 
@@ -81,31 +90,72 @@ Comprehensive upgrade script that upgrades Python, dependencies, tools, and runs
 
 #### Script fails with "uv command not found"
 
-- Ensure `setup/setup.sh` has been run successfully
+**Solution**: Ensure `setup/setup.sh` has been run successfully
+
+```bash
+./setup/setup.sh
+```
+
+### General Issues
 
 #### Tests fail after upgrade
 
 This indicates a compatibility issue. Consider:
 
-- Rolling back the upgrade by restoring the previous `uv.lock`
-- Upgrading packages one by one to identify the problematic package
-- Checking the package's changelog for breaking changes
-- Reviewing test output for specific failure details
+1. **Rollback**: Restore the previous `uv.lock` file
+1. **Incremental upgrade**: Upgrade packages one by one to identify the problematic package
+1. **Check changelog**: Review the package's changelog for breaking changes
+1. **Review test output**: Check specific failure details in test output
+1. **Update tests**: Your tests may need updates for new package versions
 
 #### Tool upgrade fails
 
-- Some tools may require manual intervention
-- Check tool-specific documentation for upgrade requirements
-- Consider upgrading tools individually if needed
-- Verify tool compatibility with your Python version
+**Solution**: Some tools may require manual intervention
 
-### General Issues
+1. Check tool-specific documentation for upgrade requirements
+1. Consider upgrading tools individually if needed
+1. Verify tool compatibility with your Python version
+1. Check for tool-specific configuration requirements
 
 #### Lock file conflicts
 
-- If `uv.lock` has conflicts, consider regenerating it with `uv lock --upgrade`
-- Review dependency compatibility in `pyproject.toml`
+**Solution**: Regenerate the lock file
+
+```bash
+uv lock --upgrade
+```
 
 #### Environment inconsistencies
 
-- Run `uv sync --all-packages` to synchronize your environment with the lock file
+**Solution**: Synchronize your environment
+
+```bash
+uv sync --all-packages
+```
+
+#### Python version issues
+
+**Solution**: Check Python version and upgrade if needed
+
+```bash
+uv python list
+uv python upgrade
+```
+
+### Performance Issues
+
+#### Slow dependency resolution
+
+**Solution**: Use uv's caching features
+
+```bash
+uv cache clean  # Clear cache if corrupted
+```
+
+#### Large lock file
+
+**Solution**: Review and optimize dependencies
+
+```bash
+uv tree  # View dependency tree
+```
