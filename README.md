@@ -90,11 +90,11 @@ uv init --lib my-library
 uv init --app my-application
 ```
 
-### Development Workflow
+### Manually run `pre-commit`
 
-1. **Install dependencies**: `uv sync`
-1. **Run tests**: `uv run pytest`
-1. **Lint code**: `uv run pre-commit`
+```bash
+uv run pre-commit run --all-files
+```
 
 ### Package Management
 
@@ -118,7 +118,10 @@ uv run pytest
 # Run tests with coverage
 uv run pytest --cov
 
-# Run tests in watch mode
+# Run only the tests for changed files
+uv run pytest --testmon
+
+# Run tests in watch mode (watch for changed files)
 uv run ptw --testmon --now .
 ```
 
